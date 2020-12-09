@@ -3,6 +3,8 @@ import axios from 'axios';
 import NewsList from './components/NewsList';
 import Categories from './components/Categories';
 import NewsItem from './components/NewsItem';
+import {Route} from 'react-router-dom';
+import  NewsPage from './pages/NewsPage';
 
 // const App=()=>{
 //   const [data, setData]=useState(null);
@@ -26,6 +28,7 @@ import NewsItem from './components/NewsItem';
 //   );
 // };
 
+/*
 const App=()=>{
   const [category, setCategory]=useState('all');
   // useCallback(두 번쨰 파라미터가 비어 있는 경우): 컴포넌트가 렌더링될 떄 만들었던 함수를 계속해서 재사용하게 됨
@@ -36,6 +39,12 @@ const App=()=>{
       <NewsList category={category}/>
     </>
   );
-}
+}*/
+
+// 리액트 라우터 적용
+const App=()=>{
+// category뒤에 ?: 값이 선택적 -> 있어도 되고 없어도 됨
+  return <Route path="/:category?" component={NewsPage}/>;
+};
 
 export default App;

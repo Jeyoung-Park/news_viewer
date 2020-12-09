@@ -1,5 +1,6 @@
 import React from 'react';
 import styled, {css} from 'styled-components';
+import {NavLink} from 'react-router-dom';
 
 const categories=[
     {
@@ -43,7 +44,7 @@ const CategoriesBlock=styled.div`
     }
     `;
 
-    const Category=styled.div`
+    const Category=styled(NavLink)`
         font-size:1.125rem;
         cursor:pointer;
         white-space:pre; //white-space: 스페이스와 탭, 줄바꿈을 어떻게 정할지 구하는 속성
@@ -53,6 +54,15 @@ const CategoriesBlock=styled.div`
 
         &:hover{
             color:#495057;
+        }
+        
+        &.active{
+            font-weight:600;
+            border-bottom: 2px solid #22b8cf;
+            color:#22b8cf;
+            &:hover{
+                color:#3bc9db;
+            }
         }
 
         ${props=>
@@ -76,8 +86,11 @@ const CategoriesBlock=styled.div`
                 {categories.map(c=>(
                     <Category 
                         key={c.name}
-                        active={category===c.name}
-                        onClick={()=>onSelect(c.name)}
+                        // active={category===c.name}
+                        // onClick={()=>onSelect(c.name)}
+                        activeClassName="active"
+                        exact={c.name==='all'} //카테고리가 all을 가리킬 떄는 exact가 true => 전체보기
+                        to={c.name==='all'?'/':`{c.name}`}
                     >{c.text}</Category>
                 ))}
             </CategoriesBlock>
